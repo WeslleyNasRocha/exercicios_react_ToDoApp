@@ -1,0 +1,8 @@
+{
+  "name": "exercicios_react_ToDoApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:WeslleyNasRocha/exercicios_react_ToDoApp.git",
+  "author": "Weslley Rocha <weslleytato.12@gmail.com>",
+  "license": "MIT"
+}
