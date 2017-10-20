@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 
-export default props => {
+const IF = (props) => {
   if (props.test) {
     return props.children;
-  } else {
-    return false;
   }
+  return false;
 };
+
+export default IF;

@@ -22,6 +22,8 @@ export default class Todo extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleMarAsPending = this.handleMarAsPending.bind(this);
     this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   handleAdd() {
@@ -29,10 +31,15 @@ export default class Todo extends Component {
     axios.post(URL, { description }).then(() => this.refresh());
   }
 
-  refresh() {
+  refresh(description = '') {
+    const search = description ? `&description__regex=/${description}/i` : '';
     axios
-      .get(`${URL}?sort=-createdAt`)
-      .then(resp => this.setState({ description: '', list: resp.data }));
+      .get(`${URL}?sort=-createdAt${search}`)
+      .then(resp => this.setState({ description, list: resp.data }));
+  }
+
+  handleSearch() {
+    this.refresh(this.state.description);
   }
 
   handleChange(event) {
@@ -40,15 +47,23 @@ export default class Todo extends Component {
   }
 
   handleRemove(todo) {
-    axios.delete(`${URL}/${todo._id}`).then(() => this.refresh());
+    axios.delete(`${URL}/${todo._id}`).then(() => this.refresh(this.state.description));
   }
 
   handleMarkAsDone(todo) {
-    axios.put(`${URL}/${todo._id}`, { ...todo, done: true }).then(() => this.refresh());
+    axios
+      .put(`${URL}/${todo._id}`, { ...todo, done: true })
+      .then(() => this.refresh(this.state.description));
   }
 
   handleMarAsPending(todo) {
-    axios.put(`${URL}/${todo._id}`, { ...todo, done: false }).then(() => this.refresh());
+    axios
+      .put(`${URL}/${todo._id}`, { ...todo, done: false })
+      .then(() => this.refresh(this.state.description));
+  }
+
+  handleClear() {
+    this.refresh();
   }
 
   render() {
@@ -59,6 +74,8 @@ export default class Todo extends Component {
           description={this.state.description}
           handleAdd={this.handleAdd}
           handleChange={this.handleChange}
+          handleSearch={this.handleSearch}
+          handleClear={this.handleClear}
         />
         <TodoList
           list={this.state.list}

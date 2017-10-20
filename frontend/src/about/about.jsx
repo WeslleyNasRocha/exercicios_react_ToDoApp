@@ -1,7 +1,7 @@
-import React from "react";
-import PageHeader from "../template/pageheader";
+import React from 'react';
+import PageHeader from '../template/pageheader';
 
-export default props => (
+export default () => (
   <div>
     <PageHeader name="Sobre" small="Nós" />
 

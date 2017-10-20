@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export default props => (
+export default () => (
   <nav className="navbar navbar-inverse bg-inverse">
     <div className="container">
       <div className="navbar-header">
@@ -16,7 +16,7 @@ export default props => (
           <span className="icon-bar" />
           <span className="icon-bar" />
         </button>
-        <a className="navbar-brand">
+        <a href="#/todos" className="navbar-brand">
           <i className="fa fa-calendar-check-o" />
           TodoApp
         </a>

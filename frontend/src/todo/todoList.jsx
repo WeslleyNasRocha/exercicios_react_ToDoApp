@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import IconButton from '../template/iconButton';
 
-export default (props) => {
+const TodoList = (props) => {
   const renderRows = () => {
     const list = props.list || [];
     return list.map(todo => (
@@ -45,3 +45,9 @@ export default (props) => {
     </div>
   );
 };
+
+TodoList.propTypes = {
+  list: PropTypes.array.isRequired,
+};
+
+export default TodoList;
