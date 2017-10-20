@@ -2,6 +2,7 @@
   "extends": "airbnb",
   "rules": {
     "linebreak-style": "off",
+    "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
