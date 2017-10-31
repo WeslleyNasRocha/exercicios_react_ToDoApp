@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import IconButton from '../template/iconButton';
 
@@ -50,4 +51,8 @@ TodoList.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
-export default TodoList;
+const mapStateToProps = state => ({
+  list: state.todo.list,
+});
+
+export default connect(mapStateToProps)(TodoList);
